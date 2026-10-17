@@ -1,0 +1,253 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+@import 'tailwindcss';
+
+html, body, #root {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --sand-50: #FBF9F6;
+  --sand-100: #F6F3ED;
+  --sand-200: #EFECE6;
+  --sand-300: #E4DFD6;
+  --sand-400: #C9C2B5;
+  --earth-900: #181614;
+  --earth-800: #23201C;
+  --earth-600: #575149;
+  --earth-400: #8E867B;
+  --accent-camel: #B88555;
+  --accent-camel-hover: #A07144;
+  --accent-gold: #C59B67;
+  --accent-sage: #28362B;
+  --accent-terracotta: #A6553B;
+  --border-warm: rgba(28, 24, 20, 0.12);
+  --border-subtle: rgba(28, 24, 20, 0.06);
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  background-color: var(--sand-100);
+  color: var(--earth-900);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Typography helpers ─────────────── */
+.font-display {
+  font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+}
+
+.font-editorial {
+  font-family: 'Cinzel', 'Outfit', serif;
+  letter-spacing: 0.02em;
+}
+
+.font-serif-luxury {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.font-sans {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+.font-mono {
+  font-family: 'DM Mono', monospace;
+}
+
+/* ── Editorial Outline Lettering (as in DEV.UN / COLLISON) ─ */
+.text-outline-light {
+  color: transparent;
+  -webkit-text-stroke: 1.2px rgba(28, 24, 20, 0.28);
+}
+
+.text-outline-dark {
+  color: transparent;
+  -webkit-text-stroke: 1.2px rgba(255, 255, 255, 0.35);
+}
+
+.text-outline-strong {
+  color: transparent;
+  -webkit-text-stroke: 1.5px #181614;
+}
+
+/* ── Fluted Ribbed Glass (Collison & Devun Style) ─ */
+.fluted-glass {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(255, 255, 255, 0.24) 50%,
+    rgba(255, 255, 255, 0.06) 100%
+  );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-right: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.2);
+}
+
+.fluted-stripes {
+  background-image: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 32px,
+    rgba(255, 255, 255, 0.09) 32px,
+    rgba(255, 255, 255, 0.09) 64px
+  );
+}
+
+/* ── Architectural Offset Frame (from Screenshot 2 & 3) ─ */
+.architect-frame {
+  position: relative;
+}
+
+.architect-frame::before {
+  content: '';
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  bottom: 14px;
+  left: 14px;
+  border: 1px solid rgba(28, 24, 20, 0.22);
+  pointer-events: none;
+  z-index: 0;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+}
+
+.architect-frame:hover::before {
+  transform: translate(4px, -4px);
+  border-color: var(--accent-camel);
+}
+
+.architect-frame-left::before {
+  top: -14px;
+  left: -14px;
+  bottom: 14px;
+  right: 14px;
+}
+
+/* ── Blueprint & Grid Canvas ────────── */
+.blueprint-grid {
+  background-color: #0d1b2a;
+  background-image: 
+    linear-gradient(rgba(100, 180, 240, 0.22) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(100, 180, 240, 0.22) 1px, transparent 1px),
+    linear-gradient(rgba(100, 180, 240, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(100, 180, 240, 0.07) 1px, transparent 1px);
+  background-size: 40px 40px, 40px 40px, 8px 8px, 8px 8px;
+}
+
+.architect-grid {
+  background-image: 
+    linear-gradient(rgba(28, 24, 20, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(28, 24, 20, 0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.architect-grid-dark {
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* ── Scroll Reveal ─────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
+
+/* ── Custom Scrollbar ──────────────── */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: var(--sand-200);
+}
+::-webkit-scrollbar-thumb {
+  background: #B5ACA0;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8F8476;
+}
+
+/* ── Distinctive Angled Gold Button (from Screenshot 2) ─ */
+.btn-angled-estimate {
+  background-color: #CCA46B;
+  color: #FFFFFF;
+  clip-path: polygon(0 0, 92% 0, 100% 50%, 92% 100%, 0 100%);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-angled-estimate:hover {
+  background-color: #B88E52;
+  transform: translateX(4px);
+}
+
+/* ── Subtle Shimmer Animation ─────── */
+@keyframes lightSweep {
+  0% { transform: translateX(-100%) rotate(25deg); }
+  100% { transform: translateX(250%) rotate(25deg); }
+}
+
+.shimmer-effect::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 100%
+  );
+  transform: rotate(25deg);
+  animation: lightSweep 6s infinite linear;
+  pointer-events: none;
+}
+
+/* ── Interactive Pulse Pins ────────── */
+@keyframes pinPulse {
+  0% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.7); opacity: 0.3; }
+  100% { transform: scale(1); opacity: 0.9; }
+}
+
+.pin-pulse {
+  animation: pinPulse 2.4s infinite ease-in-out;
+}
+
+/* ── Range Slider Styling ─────────── */
+input[type=range].slider-handle::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #181614;
+  border: 3px solid #FAF8F5;
+  cursor: ew-resize;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+}

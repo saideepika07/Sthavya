@@ -1,0 +1,26 @@
+{
+  "name": "sthavya",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "STHAVYA — AI Interior & Architectural Spatial Planner (Pure MERN Stack)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/saideepika07/Sthavya.git"
+  },
+  "homepage": "https://github.com/saideepika07/Sthavya#readme",
+  "bugs": {
+    "url": "https://github.com/saideepika07/Sthavya/issues"
+  },
+  "scripts": {
+    "dev": "npm run dev --prefix client",
+    "client": "npm run dev --prefix client",
+    "client:build": "npm run build --prefix client",
+    "client:preview": "npm run preview --prefix client",
+    "server": "npm run dev --prefix server",
+    "server:start": "npm start --prefix server",
+    "build": "npm run build --prefix client",
+    "seed": "npm run seed --prefix server",
+    "test": "npm test --prefix server"
+  }
+}
