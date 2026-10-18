@@ -14,6 +14,12 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [infoMessage, setInfoMessage] = useState<string | null>(null);
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
+
+  const showToast = (msg: string) => {
+    setToastMessage(msg);
+    setTimeout(() => setToastMessage(null), 3500);
+  };
 
   useEffect(() => {
     if (location.state?.message) {
@@ -56,6 +62,14 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-[#F6F3ED] text-[#181614] flex flex-col justify-center items-center py-12 px-4 sm:px-6 lg:px-8 selection:bg-[#B88555] selection:text-white">
+      {/* Toast Notification */}
+      {toastMessage && (
+        <div className="fixed top-6 left-1/2 -translate-x-1/2 z-50 px-6 py-3 rounded-2xl bg-[#181614] text-white text-xs font-semibold shadow-2xl flex items-center gap-2 border border-white/20 animate-fade-in">
+          <span>ℹ</span>
+          <span>{toastMessage}</span>
+        </div>
+      )}
+
       {/* Brand Header */}
       <div className="mb-8 text-center">
         <Link to="/" className="inline-block hover:opacity-90 transition-opacity">
@@ -133,7 +147,7 @@ export default function LoginPage() {
             />
           </div>
 
-          {/* Remember me */}
+          {/* Remember me & Forgot Password */}
           <div className="flex items-center justify-between pt-1">
             <label className="flex items-center gap-2 cursor-pointer select-none">
               <input
@@ -144,6 +158,14 @@ export default function LoginPage() {
               />
               <span className="text-xs text-[#575149]">Remember me</span>
             </label>
+
+            <button
+              type="button"
+              onClick={() => showToast("Password reset coming soon")}
+              className="text-xs text-[#B88555] hover:underline focus:outline-none focus:ring-1 focus:ring-[#B88555] rounded transition-colors"
+            >
+              Forgot password?
+            </button>
           </div>
 
           {/* Submit */}
